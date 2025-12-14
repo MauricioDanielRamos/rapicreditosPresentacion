@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rapicréditos - Presentación</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .btn-download {
+            background: #2c3e50;
+            color: white;
+        }
+
+        .btn-download:hover {
+            background: #34495e;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .btn-nav {
+            background: white;
+            color: #2c3e50;
+            padding: 10px 20px;
+        }
+
+        .btn-nav:hover {
+            background: #ecf0f1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 80px;
+        }
+
+        .slide {
+            background: white;
+            border-radius: 16px;
+            padding: 60px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-height: 600px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            page-break-after: always;
+        }
+
+        .slide-title {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            color: inherit;
+        }
+
+        h2 {
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            border-bottom: 4px solid #3498db;
+            padding-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 1.8em;
+            color: #3498db;
+            margin: 25px 0 15px 0;
+        }
+
+        p {
+            font-size: 1.3em;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .emphasis {
+            font-size: 1.4em;
+            font-weight: 600;
+            color: #2c3e50;
+            margin: 30px 0;
+            padding: 20px;
+            background: #ecf0f1;
+            border-left: 5px solid #e74c3c;
+            border-radius: 8px;
+        }
+
+        .highlight-box {
+            background: #ecf0f1;
+            padding: 30px;
+            border-radius: 12px;
+            border-left: 5px solid #3498db;
+            margin: 25px 0;
+        }
+
+        .highlight-box p {
+            margin-bottom: 0;
+        }
+
+        .subtitle {
+            font-size: 1.5em;
+            color: rgba(255,255,255,0.9);
+            margin-top: 10px;
+        }
+
+        .screenshot {
+            margin: 30px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+
+        .screenshot img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .quote {
+            font-size: 1.5em;
+            font-style: italic;
+            color: #2c3e50;
+            padding: 30px;
+            background: #f8f9fa;
+            border-left: 5px solid #3498db;
+            margin: 30px 0;
+            border-radius: 8px;
+        }
+
+        .speaker-tag {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .slide-counter {
+            color: #2c3e50;
+            font-weight: 600;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .problem-solution {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .problem-box {
+            background: #fee;
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 5px solid #e74c3c;
+        }
+
+        .solution-box {
+            background: #efe;
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 5px solid #27ae60;
+        }
+
+        .value-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .value-card h3 {
+            color: white;
+            margin-top: 0;
+        }
+
+        .value-card p {
+            color: rgba(255,255,255,0.95);
+        }
+
+        @media print {
+            .controls, .navigation {
+                display: none;
+            }
+            .slide {
+                box-shadow: none;
+                margin-bottom: 0;
+                page-break-after: always;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 30px 20px;
+                min-height: auto;
+            }
+            h1 { font-size: 2em; }
+            h2 { font-size: 1.8em; }
+            .problem-solution {
+                grid-template-columns: 1fr;
+            }
+            .controls {
+                position: static;
+                margin-bottom: 20px;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="controls">
+        <button class="btn btn-nav" onclick="previousSlide()">← Anterior</button>
+        <button class="btn btn-nav" onclick="nextSlide()">Siguiente →</button>
+        <button class="btn btn-download" onclick="window.print()">📥 Descargar PDF</button>
+    </div>
+
+    <div class="container" id="presentation">
+        <!-- Slide 1: Portada -->
+        <div class="slide slide-title">
+            <h1>Rapicréditos</h1>
+            <p class="subtitle">Sistema Web de Gestión de Créditos</p>
+            <div style="margin-top: 60px;">
+                <p class="subtitle" style="font-size: 1.3em;">Proyecto Final</p>
+                <p class="subtitle" style="font-size: 1.2em;">Desarrollo Web Full Stack</p>
+            </div>
+        </div>
+
+        <!-- Slide 2: Introducción - Persona A -->
+        <div class="slide">
+            <span class="speaker-tag">INTRODUCCIÓN</span>
+            <h2>Más que un trabajo académico</h2>
+            
+            <p>Somos estudiantes avanzados de la carrera de Desarrollo Web Full Stack.</p>
+            
+            <div class="highlight-box">
+                <p style="font-size: 1.4em; color: #2c3e50;">Hoy presentamos nuestro proyecto final, pero queremos dejar algo claro desde el inicio: <strong>no es solo un trabajo académico.</strong></p>
+            </div>
+
+            <p>Es un sistema pensado para resolver un problema real que hoy afecta a muchas empresas locales.</p>
+
+            <div class="quote">
+                "La tecnología no sirve si no resuelve problemas concretos. Y este proyecto nace exactamente desde esa idea."
+            </div>
+        </div>
+
+        <!-- Slide 3: El Problema - Persona B -->
+        <div class="slide">
+            <span class="speaker-tag">EL PROBLEMA</span>
+            <h2>La realidad de las empresas locales</h2>
+            
+            <p>Muchas empresas locales —comercios, financieras pequeñas, emprendimientos— ofrecen créditos propios, pero los gestionan de manera manual o con herramientas que no están pensadas para ese fin.</p>
+
+            <div class="emphasis">
+                📋 Planillas · 📓 Cuadernos · 💬 WhatsApp · 📊 Información dispersa
+            </div>
+
+            <div class="problem-solution">
+                <div class="problem-box">
+                    <h3 style="color: #e74c3c; margin-top: 0;">❌ El problema real</h3>
+                    <p style="color: #555;">No es solo el desorden administrativo.</p>
+                    <p style="color: #555; font-weight: 600;">El verdadero problema es la falta de control.</p>
+                </div>
+                <div class="solution-box">
+                    <h3 style="color: #27ae60; margin-top: 0;">⚠️ La consecuencia</h3>
+                    <p style="color: #555;">Cuando no se sabe con claridad quién debe, cuánto debe o qué cuotas están atrasadas, se asumen riesgos innecesarios.</p>
+                    <p style="color: #555; font-weight: 600;">Cuando se pierde el control del crédito, se empieza a perder dinero.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: La Solución - Persona C -->
+        <div class="slide">
+            <span class="speaker-tag">LA SOLUCIÓN</span>
+            <h2>Nuestro sistema</h2>
+            
+            <div class="screenshot">
+                <img src="image3.jpg" alt="Landing Page Rapicréditos" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%271200%27 height=%27400%27%3E%3Crect fill=%27%232c3e50%27 width=%271200%27 height=%27400%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 font-size=%2736%27 fill=%27white%27 text-anchor=%27middle%27 dominant-baseline=%27middle%27 font-family=%27Arial%27%3ELanding Page Rapicréditos%3C/text%3E%3C/svg%3E'">
+            </div>
+
+            <p>Desarrollamos una aplicación web orientada específicamente a empresas locales que otorgan créditos y necesitan orden, claridad y rapidez.</p>
+
+            <div class="highlight-box">
+                <p style="font-size: 1.35em; color: #2c3e50;"><strong>La idea principal:</strong> Centralizar toda la información en un solo lugar y digitalizar el proceso completo del crédito.</p>
+            </div>
+
+            <p style="font-size: 1.35em; font-weight: 600; color: #3498db;">No para hacerlo más complejo, sino para hacerlo más claro, más seguro y más fácil de gestionar.</p>
+        </div>
+
+        <!-- Slide 5: Objetivo - Persona A -->
+        <div class="slide">
+            <span class="speaker-tag">OBJETIVO</span>
+            <h2>Pensado para el día a día</h2>
+            
+            <div class="quote">
+                "Que la empresa pueda ver su situación real en segundos y tomar mejores decisiones."
+            </div>
+
+            <p>Este sistema no está pensado solo para grandes estructuras. Está pensado para el día a día de una empresa local, donde el tiempo es limitado y los errores cuestan caro.</p>
+
+            <div class="value-card">
+                <h3>Propuesta de valor</h3>
+                <p>Ofrecer una herramienta que permita organizar clientes, créditos y pagos de manera clara, sin depender de la memoria, de cálculos manuales o de información desactualizada.</p>
+            </div>
+
+            <div class="emphasis">
+                Ordenar el crédito no es un lujo. Es una necesidad cuando se quiere crecer de forma sostenible.
+            </div>
+        </div>
+
+        <!-- Slide 6: Panel Admin - Demostración -->
+        <div class="slide">
+            <span class="speaker-tag">PANEL ADMINISTRADOR</span>
+            <h2>Control total en un solo lugar</h2>
+            
+            <div class="screenshot">
+                <img src="image1.jpg" alt="Panel Administrador - Dashboard" onerror="this.style.display='none'">
+            </div>
+
+            <p>El panel administrativo centraliza toda la información crítica del negocio:</p>
+
+            <div class="highlight-box">
+                <p>• <strong>Resumen de créditos:</strong> En evaluación, activos, al día, en mora</p>
+                <p>• <strong>Control de capital:</strong> Total, prestado, disponible, retorno mensual</p>
+                <p>• <strong>Gestión de clientes:</strong> Activos, nuevos, aprobaciones pendientes, inactivos</p>
+            </div>
+        </div>
+
+        <!-- Slide 7: Panel Cliente -->
+        <div class="slide">
+            <span class="speaker-tag">PANEL CLIENTE</span>
+            <h2>Transparencia y profesionalismo</h2>
+            
+            <div class="screenshot">
+                <img src="image2.jpg" alt="Panel Cliente" onerror="this.style.display='none'">
+            </div>
+
+            <p>Los clientes acceden a su información de forma clara y ordenada:</p>
+
+            <div class="highlight-box">
+                <p>• <strong>Próxima cuota:</strong> Fecha y monto</p>
+                <p>• <strong>Progreso de pago:</strong> Visualización del estado de las cuotas</p>
+                <p>• <strong>Estado general:</strong> Información actualizada en tiempo real</p>
+            </div>
+
+            <p style="margin-top: 30px; font-size: 1.35em; color: #3498db; font-weight: 600;">Un sistema ordenado transmite profesionalismo y genera confianza.</p>
+        </div>
+
+        <!-- Slide 8: Valor del negocio - Persona B -->
+        <div class="slide">
+            <span class="speaker-tag">VALOR DEL NEGOCIO</span>
+            <h2>Beneficios concretos</h2>
+            
+            <div class="problem-solution">
+                <div>
+                    <h3>Mejoras operativas</h3>
+                    <div class="highlight-box" style="border-left-color: #27ae60;">
+                        <p>✓ Mejor control financiero</p>
+                        <p>✓ Reducción de errores humanos</p>
+                        <p>✓ Ahorro de tiempo administrativo</p>
+                    </div>
+                </div>
+                <div>
+                    <h3>Ventaja competitiva</h3>
+                    <div class="highlight-box" style="border-left-color: #3498db;">
+                        <p>✓ Previsibilidad</p>
+                        <p>✓ Anticipación a problemas</p>
+                        <p>✓ Mejores decisiones</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="quote">
+                "Saber qué está pasando con los créditos permite anticiparse a los problemas y no reaccionar cuando ya es tarde."
+            </div>
+
+            <div class="emphasis">
+                Una empresa que tiene control, tiene margen para decidir mejor.
+            </div>
+        </div>
+
+        <!-- Slide 9: Impacto - Persona C -->
+        <div class="slide">
+            <span class="speaker-tag">IMPACTO</span>
+            <h2>Profesionalización sin complejidad</h2>
+            
+            <p>Este sistema busca profesionalizar la gestión de créditos sin volverla compleja.</p>
+
+            <div class="value-card">
+                <h3>Imagen de marca</h3>
+                <p>Un sistema ordenado transmite profesionalismo y genera confianza en el cliente. Y cuando el cliente confía, la relación comercial es más sólida.</p>
+            </div>
+
+            <div class="highlight-box">
+                <p style="font-size: 1.35em; color: #2c3e50; text-align: center; font-weight: 600;">Que la tecnología acompañe al negocio, no que lo complique.</p>
+            </div>
+        </div>
+
+        <!-- Slide 10: Desarrollo técnico - Persona A -->
+        <div class="slide">
+            <span class="speaker-tag">DESARROLLO TÉCNICO</span>
+            <h2>Tecnología moderna y escalable</h2>
+            
+            <p>El sistema fue construido como una aplicación web moderna, accesible desde cualquier dispositivo y pensada para adaptarse a distintos tipos de empresas.</p>
+
+            <div class="problem-solution">
+                <div>
+                    <h3 style="color: #3498db;">Frontend</h3>
+                    <div class="highlight-box">
+                        <p>• React + Vite</p>
+                        <p>• Bootstrap</p>
+                        <p>• Diseño responsive</p>
+                    </div>
+                </div>
+                <div>
+                    <h3 style="color: #3498db;">Backend</h3>
+                    <div class="highlight-box">
+                        <p>• NestJS</p>
+                        <p>• MySQL</p>
+                        <p>• Autenticación JWT</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="emphasis">
+                No es un sistema cerrado ni rígido. Es una base sólida que puede crecer, incorporar nuevas funcionalidades y ajustarse a diferentes realidades comerciales.
+            </div>
+
+            <p style="font-size: 1.35em; font-weight: 600; color: #3498db; text-align: center;">La tecnología está puesta al servicio del problema, no al revés.</p>
+        </div>
+
+        <!-- Slide 11: Futuro - Persona B -->
+        <div class="slide">
+            <span class="speaker-tag">VISIÓN A FUTURO</span>
+            <h2>Evolución continua</h2>
+            
+            <p>A futuro, el sistema permite múltiples evoluciones:</p>
+
+            <div class="value-card" style="margin: 30px 0;">
+                <p style="font-size: 1.25em;">📊 Reportes financieros avanzados</p>
+                <p style="font-size: 1.25em;">🔔 Alertas automáticas</p>
+                <p style="font-size: 1.25em;">🤖 Verificación de identidad con IA</p>
+                <p style="font-size: 1.25em;">💳 Integración con billeteras virtuales (Mercado Pago, CVU, etc.)</p>
+            </div>
+
+            <div class="highlight-box">
+                <p style="font-size: 1.35em; color: #2c3e50; text-align: center;">La idea no es que el sistema quede estático, sino que pueda acompañar el crecimiento de cada empresa que lo utilice.</p>
+            </div>
+        </div>
+
+        <!-- Slide 12: Aprendizaje - Persona C -->
+        <div class="slide">
+            <span class="speaker-tag">APRENDIZAJE</span>
+            <h2>Más que código</h2>
+            
+            <div class="quote">
+                "Para nosotros, este proyecto representa algo muy concreto."
+            </div>
+
+            <p>Demuestra que podemos analizar una necesidad real, pensar una solución viable y llevarla a producción utilizando tecnología actual y buenas prácticas.</p>
+
+            <div class="problem-solution">
+                <div class="solution-box">
+                    <h3 style="color: #27ae60; margin-top: 0;">✓ Análisis</h3>
+                    <p style="color: #555;">Identificación del problema real</p>
+                </div>
+                <div class="solution-box">
+                    <h3 style="color: #27ae60; margin-top: 0;">✓ Diseño</h3>
+                    <p style="color: #555;">Arquitectura y experiencia de usuario</p>
+                </div>
+            </div>
+            <div class="problem-solution">
+                <div class="solution-box">
+                    <h3 style="color: #27ae60; margin-top: 0;">✓ Desarrollo</h3>
+                    <p style="color: #555;">Implementación con tecnologías modernas</p>
+                </div>
+                <div class="solution-box">
+                    <h3 style="color: #27ae60; margin-top: 0;">✓ Producción</h3>
+                    <p style="color: #555;">Sistema funcional y desplegable</p>
+                </div>
+            </div>
+
+            <div class="emphasis" style="margin-top: 40px;">
+                No es solo una aplicación funcionando. Es el resultado de un proceso completo de análisis, diseño y desarrollo.
+            </div>
+        </div>
+
+        <!-- Slide 13: Cierre - Persona A -->
+        <div class="slide slide-title">
+            <h2 style="color: white; border: none; margin-bottom: 40px;">En resumen</h2>
+            
+            <div style="background: rgba(255,255,255,0.1); padding: 40px; border-radius: 16px; margin: 30px 0;">
+                <p style="font-size: 1.5em; color: white; margin-bottom: 25px;">
+                    Hoy no venimos a presentar solo un sistema.
+                </p>
+                <p style="font-size: 1.7em; color: white; font-weight: bold; line-height: 1.5;">
+                    Venimos a presentar una herramienta pensada para resolver un problema real de las empresas locales, aportar valor económico y demostrar que estamos preparados para trabajar en proyectos de impacto real.
+                </p>
+            </div>
+
+            <p style="font-size: 1.4em; color: rgba(255,255,255,0.95); margin-top: 50px;">
+                En unos minutos realizaremos una demostración para mostrar cómo funciona el sistema en la práctica.
+            </p>
+
+            <p style="font-size: 1.8em; color: white; margin-top: 60px; font-weight: bold;">
+                Muchas gracias por su tiempo
+            </p>
+            
+            <p style="font-size: 1.3em; color: rgba(255,255,255,0.9); margin-top: 20px;">
+                Quedamos atentos a sus preguntas
+            </p>
+        </div>
+    </div>
+
+    <div class="navigation">
+        <button class="btn btn-nav" onclick="previousSlide()">←</button>
+        <span class="slide-counter" id="slideCounter">1 / 13</span>
+        <button class="btn btn-nav" onclick="nextSlide()">→</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            if (n >= totalSlides) currentSlide = totalSlides - 1;
+            if (n < 0) currentSlide = 0;
+            else currentSlide = n;
+
+            slides.forEach((slide, index) => {
+                if (index === currentSlide) {
+                    slide.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+
+            document.getElementById('slideCounter').textContent = `${currentSlide + 1} / ${totalSlides}`;
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                previousSlide();
+            }
+        });
+
+        let scrollTimeout;
+        window.addEventListener('scroll', () => {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                const scrollPosition = window.scrollY + window.innerHeight / 2;
+                slides.forEach((slide, index) => {
+                    const slideTop = slide.offsetTop;
+                    const slideBottom = slideTop + slide.offsetHeight;
+                    if (scrollPosition >= slideTop && scrollPosition <= slideBottom) {
+                        currentSlide = index;
+                        document.getElementById('slideCounter').textContent = `${currentSlide + 1} / ${totalSlides}`;
+                    }
+                });
+            }, 100);
+        });
+
+        showSlide(0);
+    </script>
+</body>
+</html>
