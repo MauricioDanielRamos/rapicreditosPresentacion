@@ -17,7 +17,7 @@
 
             <button class="btn btn-nav" onclick="nextSlide()">→</button>
 
-            <button class="btn btn-download" onclick="window.print()">
+            <button class="btn btn-download" onclick="downloadPDF()">
                 📥 PDF
             </button>
         </div>
@@ -617,6 +617,20 @@
             let currentSlide = 0;
             const slides = document.querySelectorAll(".slide");
 
+            // Función para hablar el texto
+            function speak(text) {
+                // Cancelar cualquier síntesis en curso
+                speechSynthesis.cancel();
+                
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'es-ES'; // Español
+                utterance.rate = 1; // Velocidad normal
+                utterance.pitch = 1; // Tono normal
+                utterance.volume = 1; // Volumen máximo
+                
+                speechSynthesis.speak(utterance);
+            }
+
             function showSlide(index) {
                 if (index < 0) index = 0;
                 if (index >= slides.length) index = slides.length - 1;
@@ -632,11 +646,28 @@
             }
 
             function nextSlide() {
-                showSlide(currentSlide + 1);
+                if (currentSlide < slides.length - 1) {
+                    showSlide(currentSlide + 1);
+                    speak("Siguiente diapositiva. Diapositiva " + (currentSlide + 1) + " de " + slides.length);
+                } else {
+                    speak("Ya estás en la última diapositiva");
+                }
             }
 
             function previousSlide() {
-                showSlide(currentSlide - 1);
+                if (currentSlide > 0) {
+                    showSlide(currentSlide - 1);
+                    speak("Diapositiva anterior. Diapositiva " + (currentSlide + 1) + " de " + slides.length);
+                } else {
+                    speak("Ya estás en la primera diapositiva");
+                }
+            }
+
+            function downloadPDF() {
+                speak("Descargando archivo PDF");
+                setTimeout(() => {
+                    window.print();
+                }, 500); // Pequeña pausa para que se escuche el audio antes de abrir el diálogo
             }
 
             document.addEventListener("keydown", (e) => {
